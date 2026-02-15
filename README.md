@@ -64,8 +64,7 @@ EPCAM, HLA-A
 - Immune exhaustion signatures are detectable in subsets of T cells
 - Differential expression analysis identifies immune-related genes distinguishing tumor and immune populations
 
-Example differential expression visualization:
-![Volcano Plot](figures/volcano_Tcells_vs_tumor.png)
+Example differential expression visualization: ![Volcano Plot](figures/volcano_Tcells_vs_tumor.png)
 ---
 
 ## Tools and Technologies
