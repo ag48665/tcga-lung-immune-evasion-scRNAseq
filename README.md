@@ -86,4 +86,4 @@ The R session information is provided in `sessionInfo.txt`.
 ---
 
 ## Author
-Bioinformatics portfolio project demonstrating single-cell RNA-seq analysis, data preprocessing, clustering, marker identification, and differential expression analysis in R.
+Agata Gabara
