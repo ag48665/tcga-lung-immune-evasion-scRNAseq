@@ -65,9 +65,7 @@ EPCAM, HLA-A
 - Differential expression analysis identifies immune-related genes distinguishing tumor and immune populations
 
 Example differential expression visualization:
-
 ![Volcano Plot](figures/volcano_Tcells_vs_tumor.png)
-
 ---
 
 ## Tools and Technologies
