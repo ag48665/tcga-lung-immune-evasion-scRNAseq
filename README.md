@@ -58,13 +58,10 @@ EPCAM, HLA-A
 ---
 
 ## Main Results
-
 - Cytotoxic T cells express high levels of **GZMB** and **GNLY**
 - Tumor epithelial cells strongly express **EPCAM**
 - Immune exhaustion signatures are detectable in subsets of T cells
 - Differential expression analysis identifies immune-related genes distinguishing tumor and immune populations
-
-Example differential expression visualization: ![Volcano Plot](figures/volcano_Tcells_vs_tumor.png)
 ---
 
 ## Tools and Technologies
