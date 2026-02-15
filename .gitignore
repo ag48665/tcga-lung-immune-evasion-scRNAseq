@@ -1,0 +1,13 @@
+# R / RStudio
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+
+data/
+*.rds
+*.Rds
+*.gz
+*.txt.gz
+notebooks/.ipynb_checkpoints/
+
