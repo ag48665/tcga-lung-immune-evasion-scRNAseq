@@ -1,168 +1,177 @@
-Tumor Immune Evasion in Lung Cancer
-Identification of Exhausted CD8 T Cells using Single-Cell RNA-seq (Scanpy)
-Project Overview
+# Tumor Immune Evasion in Lung Cancer
 
-This project performs a single-cell RNA sequencing (scRNA-seq) analysis of lung cancer tumor samples to investigate T-cell exhaustion, a key mechanism of tumor immune evasion.
+### Identification of Exhausted CD8⁺ T Cells using Single-Cell RNA-seq (Scanpy)
 
-Using the Python Scanpy framework, I processed and analyzed a public lung cancer scRNA-seq dataset to identify immune cell populations and characterize a subset of CD8 T cells displaying an exhausted phenotype.
+---
 
-The project demonstrates a full bioinformatics workflow including preprocessing, clustering, cell-type annotation, gene-set scoring, and differential expression analysis.
+## Project Summary
 
-Biological Background
+This project performs an end-to-end single-cell RNA sequencing (scRNA-seq) analysis of lung cancer tumor samples to investigate **T-cell exhaustion**, a central mechanism of tumor immune evasion.
 
-Cytotoxic CD8 T cells normally recognize and destroy tumor cells.
-However, in many cancers, continuous antigen exposure drives T cells into a dysfunctional state known as T-cell exhaustion.
+Using the Python **Scanpy** framework, I processed and analyzed a public lung cancer dataset to identify immune cell populations and characterize a subpopulation of **exhausted CD8⁺ T cells**.
+The workflow includes preprocessing, clustering, cell-type annotation, gene-signature scoring, statistical testing, and biological interpretation.
+
+The goal of the project is to computationally detect dysfunctional anti-tumor immune responses inside the tumor microenvironment.
+
+---
+
+## Biological Background
+
+Cytotoxic CD8⁺ T cells normally recognize and eliminate tumor cells.
+However, in many cancers, chronic antigen stimulation causes T cells to enter a dysfunctional state known as **T-cell exhaustion**.
 
 Exhausted T cells:
 
-lose cytotoxic activity
+* lose cytotoxic activity
+* express inhibitory immune checkpoint receptors
+* fail to eliminate tumor cells
 
-express inhibitory immune checkpoint receptors
+These cells are the primary targets of modern immunotherapies such as **PD-1/PD-L1 checkpoint blockade**.
 
-allow tumors to escape immune destruction
+This project aims to identify exhausted CD8 T cells directly from transcriptomic data.
 
-These cells are the primary targets of modern immunotherapies such as PD-1/PD-L1 checkpoint inhibitors.
+---
 
-This project aims to computationally identify exhausted CD8 T cells within the tumor microenvironment.
-
-Dataset
+## Dataset
 
 Public single-cell RNA-seq dataset:
 
-GSE131907 — Lung Cancer Tumor Microenvironment scRNA-seq
+**GSE131907 — Lung Cancer Tumor Microenvironment scRNA-seq**
 
-The raw dataset is not stored in this repository due to GitHub size limitations.
-To reproduce the analysis, download the dataset and place it in:
+The raw dataset is not included in the repository due to GitHub size limits.
+To reproduce the analysis, download the dataset from GEO and place it in:
+
+```
 /data
+```
 
-Analysis Workflow
+---
 
-Loading AnnData object (.h5ad)
+## Analysis Workflow
 
-Quality control filtering
+1. Loading AnnData object (.h5ad)
+2. Quality control filtering
 
-mitochondrial gene percentage
+   * mitochondrial gene percentage
+   * gene counts per cell
+3. Library size normalization
+4. Log-transformation
+5. Highly variable gene (HVG) selection
+6. PCA dimensionality reduction
+7. Nearest-neighbor graph construction
+8. Leiden clustering
+9. UMAP visualization
+10. Cell type annotation
+11. Exhaustion gene scoring
+12. Identification of exhausted CD8 T cells
+13. Differential gene expression (Wilcoxon test)
 
-gene counts per cell
+---
 
-Library size normalization
+## Cell Type Annotation
 
-Log-transformation
+Major immune populations were annotated using canonical markers:
 
-Highly variable gene (HVG) selection
+| Cell Type         | Marker Genes |
+| ----------------- | ------------ |
+| T cells           | CD3D, CD3E   |
+| CD8 T cells       | CD8A         |
+| NK cells          | NKG7, GNLY   |
+| B cells           | MS4A1        |
+| Myeloid/Monocytes | LST1, S100A8 |
 
-PCA dimensionality reduction
+---
 
-Neighborhood graph construction
+## T-Cell Exhaustion Analysis
 
-Leiden clustering
+An exhaustion score was calculated using immune checkpoint and exhaustion markers:
 
-UMAP visualization
+* PDCD1 (PD-1)
+* CTLA4
+* LAG3
+* TIGIT
+* HAVCR2 (TIM-3)
+* TOX
 
-Cell type annotation
+Cells in the **top 25% of exhaustion score** were classified as:
 
-Exhaustion gene scoring
+> **Exhausted CD8 T cells**
 
-Identification of exhausted CD8 T cells
+UMAP visualization reveals a distinct subpopulation enriched for checkpoint receptor expression.
 
-Differential gene expression (Wilcoxon test)
+---
 
-Cell Type Annotation
+## Differential Expression
 
-Major immune populations were identified using canonical marker genes:
+Differential gene expression (Wilcoxon rank-sum test) was performed between:
 
-Cell Type	Marker Genes
-T cells	CD3D, CD3E
-CD8 T cells	CD8A
-NK cells	NKG7, GNLY
-B cells	MS4A1
-Myeloid/Monocytes	LST1, S100A8
-T-Cell Exhaustion Analysis
+**Exhausted CD8 T cells vs Non-exhausted CD8 T cells**
 
-An exhaustion score was calculated using known checkpoint and exhaustion markers:
+Results identified transcriptional differences associated with chronic stimulation and immune dysfunction.
 
-PDCD1 (PD-1)
+Marker tables are available in:
 
-CTLA4
-
-LAG3
-
-TIGIT
-
-HAVCR2 (TIM-3)
-
-TOX
-
-Cells in the top 25% of exhaustion scores were classified as:
-Exhausted CD8 T cells
-
-UMAP visualization shows a distinct CD8 T-cell subpopulation enriched for checkpoint receptor expression.
-
-Differential Expression Results
-
-Differential gene expression (Wilcoxon rank-sum test) between exhausted and non-exhausted CD8 T cells identified transcriptional differences associated with dysfunctional T-cell states.
-
-Exhausted cells showed increased expression of immune checkpoint genes and transcriptional regulators of chronic stimulation.
-
-Marker gene tables are provided in:
+```
 results/tables/
+```
 
-Key Findings
+---
 
-A distinct CD8 T-cell subpopulation with high checkpoint receptor expression was identified
+## Key Findings
 
-These cells display a transcriptional profile consistent with T-cell exhaustion
+* A distinct CD8 T-cell subpopulation with high checkpoint receptor expression was detected
+* These cells display a transcriptional profile consistent with T-cell exhaustion
+* Exhausted cells occupy a specific region of the UMAP manifold
+* Differential expression confirms functional divergence from non-exhausted CD8 T cells
 
-Exhausted T cells localize to a specific region of the UMAP manifold
+---
 
-Differential expression analysis supports functional divergence from non-exhausted CD8 T cells
+## Repository Structure
 
+```
 data/               raw input files (not tracked by git)
-notebooks/          Jupyter notebooks
+notebooks/          analysis notebooks
 scripts/            helper scripts
-results/figures/    UMAP plots and gene expression visualizations
-results/tables/     differential expression marker tables
+results/figures/    UMAP and gene expression plots
+results/tables/     differential expression tables
+```
 
-Technologies Used
+---
 
-Python
+## Technologies
 
-Scanpy
+* Python
+* Scanpy
+* AnnData
+* NumPy
+* Pandas
+* Matplotlib
+* Statistical testing (Wilcoxon rank-sum)
 
-Anndata
+---
 
-NumPy
+## Skills Demonstrated
 
-Pandas
+* single-cell RNA-seq preprocessing and QC
+* clustering and dimensionality reduction
+* gene signature scoring
+* differential gene expression analysis
+* biological interpretation of transcriptomic data
+* reproducible computational research workflows
 
-Matplotlib
+---
 
-Single-cell RNA-seq analysis
+## Reproducibility
 
-Statistical testing (Wilcoxon rank-sum)
+Package versions and environment information are documented in:
 
-Skills Demonstrated
-
-scRNA-seq preprocessing and QC
-
-AnnData object manipulation
-
-clustering and dimensionality reduction
-
-gene signature scoring
-
-differential expression analysis
-
-biological interpretation of transcriptomic data
-
-reproducible research workflows
-
-Reproducibility
-
-All package versions are documented in:
+```
 sessionInfo.txt
+```
 
-Author
+---
 
-Agata Gabara
+## Author
+
+**Agata Gabara**
 Bioinformatics & Computational Biology
