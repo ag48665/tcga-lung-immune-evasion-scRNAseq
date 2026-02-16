@@ -1,13 +1,5 @@
-# R / RStudio
-.Rproj.user
-.Rhistory
-.RData
-.Ruserdata
-
 data/
-*.rds
-*.Rds
-*.gz
-*.txt.gz
-notebooks/.ipynb_checkpoints/
-
+results/*.h5ad
+*.h5ad
+anaconda_projects/
+.ipynb_checkpoints/
