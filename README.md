@@ -172,6 +172,6 @@ sessionInfo.txt
 ---
 
 ## Author
-
 **Agata Gabara**
-Bioinformatics & Computational Biology
+
+
