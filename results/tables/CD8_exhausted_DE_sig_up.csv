@@ -1,0 +1,2 @@
+names,scores,logfoldchanges,pvals,pvals_adj,pct_nz_group,pct_nz_reference
+TIGIT,5.3327575,27.565683,9.673234793396413e-08,0.0005733132797350187,0.13446676970633695,0.0
