@@ -21,19 +21,6 @@ These findings support a model in which lung tumors evade immune destruction not
 - `results/figures/` – UMAP and expression plots
 - `results/tables/` – differential expression results
 
-
-## Key Figures
-
-### UMAP clustering (Leiden)
-![UMAP Leiden](figures/umap_leiden.png)
-
-### Exhausted CD8 T cells (PDCD1 / TOX / CD8A)
-![Exhaustion markers](figures/umap_exhaustion_markers.png)
-
-### Exhaustion classification
-![Celltype](figures/umap_exhausted_cd8_celltype.png)
-
-
 ## Research Hypothesis
 
 Tumor-infiltrating CD8⁺ T cells in lung squamous cell carcinoma are present but transcriptionally reprogrammed into an exhausted state that prevents effective tumor killing.
@@ -201,5 +188,6 @@ results/tables/ – differential expression results
 ## Author
 
 Agata Gabara
+
 
 
