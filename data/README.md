@@ -1,9 +1,20 @@
-Raw data is not included in this repository due to GitHub file size limits.
+# Data download
 
-Dataset:
-GSE131907 — Lung Cancer Single-cell RNA-seq
+The raw data is not included in this repository due to file size limitations.
 
-Download the dataset from GEO:
+Dataset used in this project:
+GEO accession: GSE131907
+
+Download the dataset from:
 https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE131907
 
-After downloading, place the raw matrix files into this directory before running the analysis notebook.
+After downloading, place the files into:
+
+data/mtx_export/
+
+Expected files:
+- matrix.mtx
+- genes.tsv
+- barcodes.tsv
+
+This allows the full analysis to be reproduced by running the notebooks in the `notebooks/` directory.
