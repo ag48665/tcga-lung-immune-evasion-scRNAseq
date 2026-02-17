@@ -1,5 +1,7 @@
-data/
-results/*.h5ad
+data/**
 *.h5ad
-anaconda_projects/
+*.mtx
+*.tsv
+*.gz
+.Rhistory
 .ipynb_checkpoints/
