@@ -13,12 +13,33 @@ In this project, I analyzed publicly available single-cell RNA sequencing data f
 These findings support a model in which lung tumors evade immune destruction not by excluding T cells but by functionally disabling them. The analysis illustrates how single-cell transcriptomics can be used to characterize anti-tumor immune dysfunction and to computationally identify cell populations relevant to checkpoint inhibitor therapies.
 
 ---
+## Repository Structure
+
+- `data/` – input data (excluded from git)
+- `notebooks/` – analysis notebooks
+- `scripts/` – processing and scoring scripts
+- `results/figures/` – UMAP and expression plots
+- `results/tables/` – differential expression results
+
+
+## Key Figures
+
+### UMAP clustering (Leiden)
+![UMAP Leiden](figures/umap_leiden.png)
+
+### Exhausted CD8 T cells (PDCD1 / TOX / CD8A)
+![Exhaustion markers](figures/umap_exhaustion_markers.png)
+
+### Exhaustion classification
+![Celltype](figures/umap_exhausted_cd8_celltype.png)
+
 
 ## Research Hypothesis
 
 Tumor-infiltrating CD8⁺ T cells in lung squamous cell carcinoma are present but transcriptionally reprogrammed into an exhausted state that prevents effective tumor killing.
 
 ---
+
 
 ## Biological Background
 
@@ -147,10 +168,11 @@ This aligns with clinical observations where tumors rich in lymphocytes still fa
 
 ## Reproducibility
 
-All analyses are reproducible using the provided scripts and environment specifications.
+```bash
+conda env create -f environment.yml
+conda activate lusc_scRNA
+jupyter lab
 
-Environment details:
-`sessionInfo.txt`
 
 ---
 
@@ -179,4 +201,5 @@ results/tables/ – differential expression results
 ## Author
 
 Agata Gabara
+
 
