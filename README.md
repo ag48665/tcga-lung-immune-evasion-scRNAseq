@@ -1,193 +1,169 @@
 # Immune Evasion in Lung Squamous Cell Carcinoma
 
-## Single-Cell Transcriptomic Evidence for Exhausted CD8⁺ T Cells in the TCGA Tumor Microenvironment
+## Single-cell transcriptomic identification of exhausted CD8⁺ T cells
 
 ---
 
-## Abstract
+## Project Overview
 
-Lung squamous cell carcinoma (LUSC) frequently exhibits resistance to immune-mediated tumor clearance despite the presence of tumor-infiltrating lymphocytes. A major proposed mechanism is T-cell exhaustion, a dysfunctional differentiation state caused by chronic antigen stimulation within the tumor microenvironment.
+Tumors can evade immune destruction even when infiltrated by cytotoxic T lymphocytes.
+One proposed mechanism is **T-cell exhaustion** — a dysfunctional differentiation state caused by chronic antigen stimulation inside the tumor microenvironment.
 
-In this project, I analyzed publicly available single-cell RNA sequencing data from human lung tumors to determine whether transcriptionally identifiable exhausted CD8⁺ T cells are present within the tumor immune compartment. Using an unsupervised Scanpy pipeline, I identified immune cell populations and detected a discrete CD8⁺ T-cell subset enriched for immune checkpoint receptors (PDCD1, LAG3, TIGIT, HAVCR2, CTLA4, TOX). Differential expression analysis demonstrated suppression of cytotoxic programs and enrichment of inhibitory signaling pathways.
+This project analyzes human lung tumor single-cell RNA-seq data to determine whether tumor-infiltrating CD8⁺ T cells exist in a transcriptionally exhausted state.
 
-These findings support a model in which lung tumors evade immune destruction not by excluding T cells but by functionally disabling them. The analysis illustrates how single-cell transcriptomics can be used to characterize anti-tumor immune dysfunction and to computationally identify cell populations relevant to checkpoint inhibitor therapies.
+Using a reproducible Scanpy workflow, I:
 
----
-## Repository Structure
+• identified immune cell populations
+• isolated CD8⁺ T cells
+• quantified exhaustion signatures
+• reconstructed differentiation trajectory (pseudotime)
+• performed differential expression analysis
 
-- `data/` – input data (excluded from git)
-- `notebooks/` – analysis notebooks
-- `scripts/` – processing and scoring scripts
-- `results/figures/` – UMAP and expression plots
-- `results/tables/` – differential expression results
-
-## Research Hypothesis
-
-Tumor-infiltrating CD8⁺ T cells in lung squamous cell carcinoma are present but transcriptionally reprogrammed into an exhausted state that prevents effective tumor killing.
-
----
-
-
-## Biological Background
-
-The immune system is capable of recognizing malignant cells through antigen presentation. Cytotoxic CD8⁺ T lymphocytes normally eliminate tumor cells via perforin and granzyme-mediated killing.
-
-However, chronic antigen exposure in tumors induces **T-cell exhaustion**, characterized by:
-
-* sustained checkpoint receptor expression
-* reduced cytokine production
-* impaired cytotoxicity
-* inability to clear cancer cells
-
-Checkpoint inhibitor therapies (anti-PD-1/PD-L1) partially restore T-cell function, but only a subset of patients respond. One explanation is that tumors contain terminally exhausted T cells that cannot be fully reactivated.
-
-This project computationally investigates whether exhausted CD8⁺ T cells can be detected directly from tumor transcriptomic data.
+The analysis demonstrates that tumors may escape immune clearance not by excluding T cells, but by functionally disabling them.
 
 ---
 
 ## Dataset
 
-Human lung tumor microenvironment scRNA-seq dataset
-**GEO accession: GSE131907**
+Public dataset:
 
-The dataset contains tumor-infiltrating immune cells isolated from lung cancer patients.
+**GEO: GSE131907 — Human Lung Tumor Microenvironment scRNA-seq**
 
-To reproduce:
-Place downloaded files in:
+The repository does not contain raw data due to size limitations.
 
-`/data`
+### To reproduce the analysis
+
+1. Download the processed dataset (h5ad)
+2. Place it into:
+
+```
+data/lusc.h5ad
+```
+
+All notebooks will run automatically once the file is present.
 
 ---
 
-## Methods
+## Analysis Workflow
 
-### Quality Control
+### 1. Preprocessing
 
-Cells were filtered based on:
-
-* mitochondrial transcript percentage
-* total UMI counts
-* number of detected genes
-
-Low-quality and dying cells were removed prior to analysis.
-
-### Normalization and Feature Selection
-
+* quality control filtering
+* mitochondrial content filtering
 * library size normalization
 * log transformation
 * highly variable gene selection
 
-### Dimensionality Reduction and Clustering
+### 2. Dimensionality Reduction
 
 * PCA
 * nearest neighbor graph
 * Leiden clustering
 * UMAP visualization
 
-Cell populations were identified using unsupervised transcriptomic similarity rather than predefined labels.
+### 3. Cell Type Annotation
+
+Annotated using canonical immune markers:
+
+| Cell Type   | Marker Genes |
+| ----------- | ------------ |
+| T cells     | CD3D, CD3E   |
+| CD8 T cells | CD8A         |
+| NK cells    | NKG7, GNLY   |
+| B cells     | MS4A1        |
+| Myeloid     | LST1         |
 
 ---
 
-## Cell Type Identification
+## Identification of Exhausted CD8⁺ T Cells
 
-Clusters were annotated using canonical immune markers:
+An exhaustion signature score was computed using checkpoint and regulatory genes:
 
-| Population    | Marker Genes |
-| ------------- | ------------ |
-| T cells       | CD3D, CD3E   |
-| CD8⁺ T cells  | CD8A         |
-| NK cells      | NKG7, GNLY   |
-| B cells       | MS4A1        |
-| Myeloid cells | LST1, S100A8 |
+**PDCD1, CTLA4, LAG3, TIGIT, HAVCR2, TOX**
 
-The tumor immune microenvironment consisted of multiple lymphoid and myeloid populations.
+CD8 T cells with the highest exhaustion scores formed a distinct transcriptional population on UMAP embedding.
 
 ---
 
-## Detection of Exhausted CD8⁺ T Cells
+## Pseudotime Trajectory Analysis
 
-An exhaustion gene-signature score was calculated using established checkpoint and exhaustion markers:
+To model T-cell differentiation, diffusion pseudotime (DPT) was computed.
 
-PDCD1, CTLA4, LAG3, TIGIT, HAVCR2, TOX
+The trajectory revealed a progression:
 
-CD8⁺ T cells within the top quartile of the exhaustion score were classified as **exhausted T cells**.
+**early effector CD8 T cells → intermediate state → terminally exhausted CD8 T cells**
 
-UMAP embedding revealed a distinct transcriptional cluster enriched for inhibitory receptor expression, indicating a stable immune cell state rather than temporary activation.
-
----
-
-## Differential Expression Results
-
-I compared exhausted and non-exhausted CD8⁺ T cells using the Wilcoxon rank-sum test.
-
-The exhausted population showed:
-
-* increased immune checkpoint expression
-* decreased cytotoxic gene expression
-* altered activation signaling pathways
-
-Marker tables are located in:
-`results/tables/`
+Exhaustion marker expression increased along pseudotime, supporting a continuous differentiation process rather than discrete cell types.
 
 ---
 
-## Biological Interpretation
+## Differential Expression
 
-The data indicate that lung tumors contain T cells that have infiltrated the tumor but are transcriptionally suppressed. Elevated TOX and inhibitory receptor expression suggests chronic antigen exposure leading to functional impairment.
+Exhausted vs non-exhausted CD8 T cells were compared using the Wilcoxon rank-sum test.
 
-This supports a mechanism of immune evasion based on **immune suppression rather than immune absence**.
+Observed changes:
 
-Implication:
-Tumors may progress even when recognized by the immune system because effector cells are present but inactive.
+Upregulated:
 
-This aligns with clinical observations where tumors rich in lymphocytes still fail to regress without checkpoint inhibitor therapy.
+* inhibitory receptors
+* regulatory transcription factors
 
----
+Downregulated:
 
-## Limitations
+* cytotoxic effector genes
 
-* single dataset analysis
-* no direct functional validation
-* lack of patient treatment outcome data
-* marker-based exhaustion classification
+Results available in:
 
----
-
-## Reproducibility
-
-```bash
-conda env create -f environment.yml
-conda activate lusc_scRNA
-jupyter lab
-
+```
+results/tables/
+```
 
 ---
 
 ## Repository Structure
 
-data/ – input data (excluded from git)
-notebooks/ – analysis notebooks
-scripts/ – processing and scoring scripts
-results/figures/ – UMAP and gene expression plots
-results/tables/ – differential expression results
+```
+data/               input data (ignored by git)
+notebooks/          analysis notebooks
+scripts/            helper scripts
+results/figures/    visualizations
+results/tables/     differential expression results
+```
+
+---
+
+## Reproducibility
+
+```
+conda env create -f environment.yml
+conda activate lusc_scRNA
+jupyter lab
+```
 
 ---
 
 ## Skills Demonstrated
 
 * single-cell RNA-seq analysis (Scanpy)
-* unsupervised clustering
-* immune cell annotation
+* clustering & cell annotation
 * gene signature scoring
-* differential expression analysis
-* hypothesis-driven biological interpretation
+* trajectory inference (pseudotime)
+* differential expression
+* biological interpretation
 * reproducible research workflow
+
+---
+
+## Biological Interpretation
+
+The data indicate that lung tumors contain infiltrating CD8⁺ T cells that are transcriptionally suppressed rather than absent.
+
+Elevated TOX and immune checkpoint expression suggests chronic antigen exposure and terminal differentiation into an exhausted state.
+
+This provides computational evidence supporting immune evasion via functional T-cell inactivation and explains the biological rationale for checkpoint inhibitor therapy.
 
 ---
 
 ## Author
 
-Agata Gabara
-
-
-
+**Agata Gabara**
