@@ -1,118 +1,84 @@
-# CD8 T Cell Trajectory and Exhaustion Analysis
+# Notebook 02 — CD8 T cell trajectory / pseudotime (Scanpy)
 
-This directory contains notebooks performing trajectory inference of CD8⁺ T cells in the lung tumor microenvironment using single-cell RNA-seq data.
+This notebook focuses on **CD8 T cells** and models a **trajectory from early/less exhausted states toward exhaustion** using **Diffusion Maps + Diffusion Pseudotime (DPT)** in Scanpy.
 
-The goal of this analysis is to reconstruct the **developmental progression from functional cytotoxic T cells to terminally exhausted T cells** and identify molecular programs associated with immune evasion in lung cancer.
-
----
-
-## Biological Background
-
-Tumor-infiltrating CD8⁺ T cells initially exhibit cytotoxic activity and anti-tumor function.
-However, chronic antigen exposure in cancer leads to **T cell exhaustion**, a dysfunctional state characterized by:
-
-* reduced effector function
-* impaired proliferation
-* sustained inhibitory receptor expression
-
-Key exhaustion markers analyzed:
-
-* **PDCD1 (PD-1)**
-* **LAG3**
-* **HAVCR2 (TIM-3)**
-* **TOX**
-
-Cytotoxic markers:
-
-* **GZMB**
-* **NKG7**
-* **CD8A / CD8B**
+It is intended to be run **after** the initial scRNA-seq preprocessing/clustering notebook, or directly from an exported `.h5ad` object containing CD8 T cells.
 
 ---
 
-## Main Notebook
+## Goal
 
-### `02_CD8_Tcell_Trajectory_Analysis.ipynb`
-
-Identifies and validates CD8⁺ T cell populations.
-
-Performs:
-
-* T cell marker validation (CD3D, TRAC)
-* CD8⁺ cell identification
-* visualization of cytotoxic vs exhausted phenotypes
-* cluster annotation
+1. Build a CD8 T-cell manifold (HVGs → PCA → neighbors → UMAP → Leiden)
+2. Compute an **exhaustion score** (checkpoint/exhaustion gene-set)
+3. Choose a biologically plausible **start cluster** (lowest exhaustion score)
+4. Run **Diffusion Maps** and **DPT pseudotime**
+5. Visualize the trajectory and confirm that checkpoint markers increase along pseudotime
+6. Save an output `.h5ad` with pseudotime and scores
 
 ---
 
-### `cd8_tcell_exhaustion_pseudotime.ipynb`
+## Inputs
 
-Core trajectory analysis.
+Expected input file (relative to repo root):
 
-This notebook reconstructs T cell differentiation using diffusion pseudotime (DPT) implemented in **Scanpy**.
+- `data/lusc.h5ad` (not tracked in git)
 
-Analysis steps:
-
-1. Selection of CD8⁺ T cells
-2. Normalization and HVG selection
-3. PCA and neighborhood graph construction
-4. Diffusion maps
-5. Root cell identification (early T cell state)
-6. Pseudotime inference
-7. Visualization of gene expression along trajectory
+If you are running from the `notebooks/` folder, ensure paths are correct (the notebook uses `Path("data") / "lusc.h5ad"` assuming the working directory is the repo root).
 
 ---
 
-## Key Findings
+## Key methods
 
-* CD8⁺ T cells do not form discrete states but a **continuous differentiation trajectory**
-* Cytotoxic genes are highest in early pseudotime
-* Exhaustion markers increase toward late pseudotime
-* TOX and PDCD1 expression track terminal exhaustion
+- **HVG selection** (robust flavor for log1p data)
+- **PCA / neighbor graph**
+- **UMAP** embedding
+- **Leiden** clustering
+- **Exhaustion scoring**
+- **Diffusion map** and **Diffusion pseudotime (DPT)**
+- Marker overlays: `PDCD1`, `LAG3`, `HAVCR2`, `TOX`, `GZMB`
 
-This supports a progressive transition from effector T cells to terminally exhausted T cells in lung cancer.
+---
+
+## Outputs
+
+This notebook produces:
+
+### Figures (recommended to save into `results/figures/`)
+- UMAP colored by **Leiden clusters**
+- UMAP colored by **pseudotime**
+- UMAP overlays of checkpoint/exhaustion markers (PDCD1/LAG3/HAVCR2/TOX)
+- Scatter: **Exhaustion score vs pseudotime**
+
+### Tables (optional)
+- Mean exhaustion score per Leiden cluster (used to choose the start cluster)
+
+### Saved AnnData
+- Example output: `results/cd8_pseudotime_lusc.h5ad`
+  - `obs["dpt_pseudotime"]`
+  - `obs["exhaustion_score"]`
+  - `obs["leiden"]`
+  - embeddings and neighbors graph
+
+---
+
+## How to run
+
+Open the notebook and run cells top-to-bottom.  
+If UMAP is slow on your machine, run on a subset (e.g. 50k cells) and rerun on full data later.
+
+---
+
+## Notes / interpretation
+
+- **Start cluster** should represent early/less exhausted CD8 T cells (lowest exhaustion score).
+- If marker expression (PDCD1/LAG3/HAVCR2/TOX) increases with pseudotime, it supports a trajectory toward exhaustion.
+- Pseudotime is a **relative ordering**, not real-time.
 
 ---
 
 ## Requirements
 
-Python ≥ 3.10
+- Python 3.10+
+- scanpy, anndata, numpy, pandas, scipy, matplotlib
 
-Required packages:
-
-* scanpy
-* anndata
-* numpy
-* pandas
-* scipy
-* matplotlib
-* seaborn
-
-Install:
-
-```
-pip install scanpy anndata pandas numpy scipy matplotlib seaborn
-```
-
----
-
-## Output
-
-Generated outputs include:
-
-* UMAP projections of CD8⁺ T cells
-* marker gene expression maps
-* pseudotime trajectory plots
-* exhaustion score vs pseudotime analysis
-
-Figures are saved in:
-
-```
-/figures
-```
-
-Processed AnnData object:
-
-```
-cd8_pseudotime_lusc.h5ad
-```
+Environment is provided in `environment.yml`.
