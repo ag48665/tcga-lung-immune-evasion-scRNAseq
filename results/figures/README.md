@@ -1,40 +1,89 @@
 # Generated Figures
 
-This directory contains the visualization outputs produced by the Scanpy single-cell RNA-seq analysis.
+This directory contains all visualization outputs produced during the single-cell RNA-seq analysis of the lung tumor microenvironment.
 
-The figures illustrate cell populations in the lung tumor microenvironment and highlight exhausted CD8+ T cell signatures.
-
----
-
-## UMAP Visualizations
-
-### umap_celltypes.png
-UMAP projection showing annotated immune cell populations (B cells, CD8 T cells, myeloid cells, NK cells, and others).
-
-### umap_leiden_30k.png
-Unsupervised Leiden clustering of all cells based on transcriptomic similarity.
+The figures document identification of CD8⁺ T cells, validation of their phenotype, and evidence of progressive T-cell exhaustion.
 
 ---
 
-## Marker Gene Expression
+## Global Cell Structure
 
-### tcell_markers.png
-Expression of canonical T-cell markers (CD3D, CD8A, CD4, FOXP3) across the UMAP embedding, validating cell identity.
+### `umap_celltypes.png`
 
-### checkpoint_markers.png
-Expression of immune checkpoint and exhaustion genes:
-PDCD1 (PD-1), LAG3, TIGIT, HAVCR2, and TOX.
-High expression indicates exhausted T-cell states.
+UMAP embedding of all cells after preprocessing and clustering.
 
----
+Cells are annotated into major immune populations, including:
 
-## Differential Expression
+* CD8⁺ T cells
+* CD4⁺ T cells
+* B cells
+* NK cells
+* myeloid cells
 
-### volcano_Tcells_vs_tumor.png
-Volcano plot showing genes differentially expressed between T cells and tumor epithelial cells.
-
-Upregulated immune genes confirm cytotoxic T-cell activity, while epithelial markers identify tumor cells.
+This plot establishes the cellular composition of the tumor microenvironment and identifies the T-cell compartment used for downstream analysis.
 
 ---
 
-These visualizations support the presence of exhausted CD8+ T cells within the tumor microenvironment.
+### `umap_leiden_30k.png`
+
+Unsupervised Leiden clustering of all cells.
+
+Each color represents a transcriptionally distinct cluster inferred purely from gene expression similarity.
+Clusters containing T-cell markers were selected for detailed CD8 T-cell trajectory analysis.
+
+---
+
+## T-cell Identity Validation
+
+### `tcell_markers.png`
+
+UMAP showing expression of canonical T-cell lineage genes:
+
+* **CD3D**
+* **TRAC**
+* **CD8A**
+* **CD4**
+* **FOXP3**
+
+This confirms that selected clusters correspond to T-cell populations and allows separation of CD8⁺ cytotoxic T cells from other lymphocytes.
+
+---
+
+## Immune Checkpoint and Exhaustion Signature
+
+### `checkpoint_markers.png`
+
+UMAP visualization of inhibitory receptor and exhaustion-associated genes:
+
+* **PDCD1 (PD-1)**
+* **LAG3**
+* **TIGIT**
+* **HAVCR2 (TIM-3)**
+* **TOX**
+
+High co-expression of these genes identifies exhausted CD8⁺ T cells.
+The spatial concentration of these markers indicates a dysfunctional T-cell population within the tumor microenvironment.
+
+---
+
+## Differential Gene Expression
+
+### `volcano_plot.png`
+
+Volcano plot of differential expression analysis.
+
+Shows genes significantly up- or down-regulated between immune cell populations.
+Immune activation genes (e.g., cytotoxic effectors) are enriched in T cells, while epithelial/tumor markers are enriched in tumor cells.
+
+---
+
+## Biological Interpretation
+
+Together, these figures demonstrate:
+
+1. Presence of tumor-infiltrating CD8⁺ T cells
+2. Separation of functional and dysfunctional T-cell states
+3. Upregulation of inhibitory checkpoint receptors
+4. Evidence of progressive T-cell exhaustion in lung cancer
+
+These observations motivated the downstream pseudotime trajectory analysis performed in the trajectory notebooks.
