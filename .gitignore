@@ -1,7 +1,38 @@
-data/**
+# raw data
+data/
 *.h5ad
+*.loom
 *.mtx
-*.tsv
+*.mtx.gz
+*.h5
+*.rds
+*.rdata
+*.csv.gz
+*.tsv.gz
 *.gz
-.Rhistory
+
+# big intermediate objects
+*.pickle
+*.pkl
+*.joblib
+
+# notebooks cache
 .ipynb_checkpoints/
+
+# R / Python cache
+__pycache__/
+*.pyc
+*.pyo
+.Rhistory
+.RData
+.Rproj.user/
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# figures au
