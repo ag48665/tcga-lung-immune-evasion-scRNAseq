@@ -45,15 +45,6 @@ All cells were clustered using Leiden clustering, revealing multiple immune popu
 
 Canonical markers (CD3D, CD8A, CD8B, NKG7, GZMB) were used to identify cytotoxic T lymphocytes.
 
----
-
-### CD8 T-Cell Heterogeneity
-
-![CD8 subclusters](results/figures/CD8_T_cell_Subcluster_UMAP.png)
-
-Reclustering shows CD8 T cells form multiple transcriptional states rather than a single population.
-
----
 
 ### Exhaustion Phenotype
 
@@ -168,3 +159,4 @@ This provides a computational explanation for the effectiveness of immune checkp
 ## Author
 
 **Agata Gabara**
+
