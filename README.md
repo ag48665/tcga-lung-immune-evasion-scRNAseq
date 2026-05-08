@@ -28,6 +28,36 @@ They follow a continuous differentiation path:
 Exhaustion markers increase along the trajectory, demonstrating functional inactivation rather than immune exclusion.
 
 ---
+## Potential Use by Medical Professionals
+
+This work may help clinicians and translational cancer researchers better understand why some lung tumors resist immune destruction despite substantial T-cell infiltration.
+
+The analysis suggests that in many LUSC tumors, CD8⁺ T cells are present but become progressively dysfunctional through exhaustion-associated programs rather than being completely excluded from the tumor microenvironment.
+
+Potential medical relevance includes:
+
+- **Understanding immunotherapy response**
+  - Exhausted T-cell states identified through single-cell RNA-seq may help explain why some patients respond to immune checkpoint inhibitors while others do not.
+
+- **Patient stratification**
+  - Tumors enriched for terminally exhausted CD8⁺ T cells may represent biologically distinct immune states that could potentially influence treatment selection in future precision oncology workflows.
+
+- **Checkpoint inhibitor research**
+  - Progressive upregulation of PDCD1, LAG3, HAVCR2, and TOX along pseudotime trajectories supports the biological rationale for checkpoint blockade therapies targeting PD-1/PD-L1 and related pathways.
+
+- **Biomarker discovery**
+  - Exhaustion-associated transcriptional programs may contribute to future biomarker development for predicting immunotherapy sensitivity or resistance.
+
+- **Monitoring immune dysfunction**
+  - Single-cell immune profiling could eventually help characterize functional immune suppression within tumors more precisely than conventional bulk PD-L1 staining.
+
+- **Therapeutic development**
+  - Identification of transitional versus terminally exhausted T-cell states may support development of therapies aimed at restoring T-cell function before irreversible dysfunction occurs.
+
+Importantly, this project is a computational and translational research study and is not intended for direct clinical use or patient diagnosis. Further validation in prospective clinical and experimental studies would be required before implementation in routine oncology practice.
+
+---
+
 
 ## Overview of Analysis
 
