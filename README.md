@@ -28,36 +28,39 @@ They follow a continuous differentiation path:
 Exhaustion markers increase along the trajectory, demonstrating functional inactivation rather than immune exclusion.
 
 ---
-## Potential Use by Medical Professionals
+## Potential Clinical Relevance
 
-This work may help clinicians and translational cancer researchers better understand why some lung tumors resist immune destruction despite substantial T-cell infiltration.
+The analysis suggests that tumor-infiltrating CD8⁺ T cells in LUSC are present but progressively acquire exhaustion-associated transcriptional programs.
 
-The analysis suggests that in many LUSC tumors, CD8⁺ T cells are present but become progressively dysfunctional through exhaustion-associated programs rather than being completely excluded from the tumor microenvironment.
+Potential implications include:
 
-Potential medical relevance includes:
+- understanding response to immune checkpoint inhibitors
+- identification of exhaustion-associated biomarkers
+- characterization of immune dysfunction within tumors
+- support for future immunotherapy research
 
-- **Understanding immunotherapy response**
-  - Exhausted T-cell states identified through single-cell RNA-seq may help explain why some patients respond to immune checkpoint inhibitors while others do not.
-
-- **Patient stratification**
-  - Tumors enriched for terminally exhausted CD8⁺ T cells may represent biologically distinct immune states that could potentially influence treatment selection in future precision oncology workflows.
-
-- **Checkpoint inhibitor research**
-  - Progressive upregulation of PDCD1, LAG3, HAVCR2, and TOX along pseudotime trajectories supports the biological rationale for checkpoint blockade therapies targeting PD-1/PD-L1 and related pathways.
-
-- **Biomarker discovery**
-  - Exhaustion-associated transcriptional programs may contribute to future biomarker development for predicting immunotherapy sensitivity or resistance.
-
-- **Monitoring immune dysfunction**
-  - Single-cell immune profiling could eventually help characterize functional immune suppression within tumors more precisely than conventional bulk PD-L1 staining.
-
-- **Therapeutic development**
-  - Identification of transitional versus terminally exhausted T-cell states may support development of therapies aimed at restoring T-cell function before irreversible dysfunction occurs.
-
-Importantly, this project is a computational and translational research study and is not intended for direct clinical use or patient diagnosis. Further validation in prospective clinical and experimental studies would be required before implementation in routine oncology practice.
+This project is intended for research and educational purposes only and is not designed for clinical decision-making.
 
 ---
+## Main Findings
 
+### CD8 T cells remain present within tumors
+
+The analysis suggests that immune evasion occurs through functional suppression rather than complete immune exclusion.
+
+### Exhaustion increases continuously along pseudotime
+
+Checkpoint receptor expression progressively increases during differentiation.
+
+### Cytotoxic programs are replaced by exhaustion-associated states
+
+Late-stage cells show elevated PDCD1, TOX, LAG3, and HAVCR2 expression.
+
+### Tumor immune dysfunction can be reconstructed at single-cell resolution
+
+Trajectory analysis reveals a continuous transition from effector to terminally exhausted T-cell states.
+
+---
 
 ## Overview of Analysis
 
@@ -107,6 +110,25 @@ Exhaustion increases with pseudotime, indicating progressive acquisition of dysf
 Early cells express cytotoxic genes (GZMB, NKG7), while late cells upregulate checkpoint and regulatory genes (PDCD1, TOX, HAVCR2, LAG3).
 
 ---
+## Project Highlights
+
+✔ Single-cell RNA-seq analysis
+
+✔ CD8 T-cell exhaustion modeling
+
+✔ Diffusion pseudotime trajectory inference
+
+✔ Immune evasion characterization
+
+✔ Exhaustion signature scoring
+
+✔ Differential expression analysis
+
+✔ Tumor microenvironment profiling
+
+✔ Reproducible Scanpy workflow
+
+---
 
 ## Dataset
 
@@ -141,12 +163,22 @@ data/lusc.h5ad
 
 ## Repository Structure
 
-```
-data/               input data (ignored by git)
-notebooks/          analysis notebooks
-scripts/            preprocessing scripts
-results/figures/    key figures
-results/tables/     differential expression results
+```text
+tcga-lung-immune-evasion-scRNAseq/
+│
+├── data/
+│
+├── notebooks/
+│
+├── scripts/
+│
+├── results/
+│   ├── figures/
+│   └── tables/
+│
+├── environment.yml
+│
+└── README.md
 ```
 
 ---
@@ -186,7 +218,18 @@ This provides a computational explanation for the effectiveness of immune checkp
 
 ---
 
-## Author
-
 **Agata Gabara**
 
+Incoming MSc Bioinformatics Student
+
+Research Interests:
+
+- Cancer Genomics
+- Single-Cell Transcriptomics
+- Tumor Immunology
+- Computational Oncology
+- Multi-Omics Integration
+
+GitHub: https://github.com/ag48665
+
+LinkedIn: https://www.linkedin.com/in/agatha-gabara-06494a37/
