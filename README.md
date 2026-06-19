@@ -1,6 +1,6 @@
-# Immune Evasion in Lung Squamous Cell Carcinoma
+# Immune Evasion in Lung Squamous Cell Carcinoma: Single-Cell Reconstruction of CD8⁺ T-Cell Exhaustion
 
-## Single-cell RNA-seq reconstruction of CD8⁺ T-cell exhaustion
+## Single-cell RNA-seq analysis of tumor-infiltrating T-cell dysfunction
 
 Single-cell transcriptomic analysis of the lung squamous cell carcinoma (LUSC) tumor microenvironment using Python, Scanpy, and trajectory inference.
 
@@ -35,6 +35,16 @@ Cytotoxic CD8⁺ T cells infiltrate many tumors, yet cancers frequently survive.
 One major hypothesis is **T-cell exhaustion** — a dysfunctional differentiation state caused by chronic antigen stimulation within the tumor microenvironment.
 
 This project investigates whether tumor-infiltrating CD8⁺ T cells in human lung squamous cell carcinoma undergo a progressive transition into an exhausted state.
+
+---
+
+## Research Questions
+
+1. Do tumor-infiltrating CD8⁺ T cells exhibit transcriptional features of exhaustion?
+2. Can pseudotime analysis reconstruct the transition from effector to exhausted states?
+3. Which genes drive functional T-cell inactivation?
+4. How does exhaustion evolve across differentiation trajectories?
+5. What mechanisms may contribute to immune evasion in LUSC?
 
 ---
 
@@ -133,4 +143,143 @@ Potential implications include:
 * Characterization of immune dysfunction within tumors
 * Support for future immunotherapy research
 
-This project is intended for research and educational purposes only and is not designed for
+This project is intended for research and educational purposes only and is not designed for clinical decision-making.
+
+---
+
+## Dataset
+
+**GEO: GSE131907 — Human Lung Tumor Microenvironment scRNA-seq**
+
+The repository excludes raw data due to size limitations.
+
+To reproduce the analysis:
+
+```text
+Place downloaded dataset at:
+
+data/lusc.h5ad
+```
+
+---
+
+## Methods
+
+**Software:** Python, Scanpy, AnnData
+
+### Analysis Pipeline
+
+1. Quality control and filtering
+2. Normalization and highly variable gene detection
+3. PCA and UMAP embedding
+4. Leiden clustering
+5. CD8 T-cell subsetting
+6. Exhaustion signature scoring
+7. Diffusion pseudotime trajectory inference
+8. Differential expression analysis
+
+---
+
+## Repository Structure
+
+```text
+tcga-lung-immune-evasion-scRNAseq/
+│
+├── data/
+├── notebooks/
+├── scripts/
+├── results/
+│   ├── figures/
+│   └── tables/
+├── environment.yml
+└── README.md
+```
+
+---
+
+## Reproducibility
+
+```bash
+conda env create -f environment.yml
+
+conda activate lusc_scRNA
+
+jupyter lab
+```
+
+---
+
+## Biological Interpretation
+
+The analysis supports a model of **immune evasion via functional T-cell inactivation**.
+
+Key observations include:
+
+* CD8⁺ T cells remain present within the tumor microenvironment
+* Chronic antigen exposure promotes progressive dysfunction
+* Immune checkpoint receptors accumulate during differentiation
+* Cytotoxic programs are gradually replaced by exhaustion-associated transcriptional states
+
+These findings provide a computational explanation for why tumors may evade immune destruction despite substantial T-cell infiltration and support the biological rationale for immune checkpoint blockade therapies.
+
+---
+
+## Skills Demonstrated
+
+### Single-Cell Bioinformatics
+
+* scRNA-seq analysis using Scanpy
+* Cell-type annotation
+* Gene signature scoring
+* Differential expression analysis
+* Pseudotime trajectory inference
+
+### Cancer Genomics
+
+* Tumor microenvironment analysis
+* T-cell exhaustion characterization
+* Immune evasion mechanisms
+* Translational cancer biology
+
+### Computational Biology
+
+* High-dimensional transcriptomic analysis
+* Data visualization
+* Biological interpretation
+* Reproducible research workflows
+
+### Tools
+
+* Python
+* Scanpy
+* AnnData
+* Pandas
+* NumPy
+* Matplotlib
+* Jupyter
+
+---
+
+## Author
+
+**Agata Gabara**
+
+MSc Bioinformatics Student
+
+Research Interests:
+
+* Cancer Genomics
+* Single-Cell Transcriptomics
+* Tumor Immunology
+* Computational Oncology
+* Multi-Omics Integration
+
+GitHub: https://github.com/ag48665
+
+LinkedIn: https://www.linkedin.com/in/agatha-gabara-06494a37/
+
+---
+
+## License
+
+This repository is provided for educational and research portfolio purposes.
