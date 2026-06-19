@@ -2,9 +2,15 @@
 
 ## Single-cell RNA-seq analysis of tumor-infiltrating T-cell dysfunction
 
-Single-cell transcriptomic analysis of the lung squamous cell carcinoma (LUSC) tumor microenvironment using Python, Scanpy, and trajectory inference.
+---
 
-This project investigates whether tumor-infiltrating CD8⁺ T cells undergo progressive functional exhaustion and how this process may contribute to immune evasion.
+## Project Overview
+
+This project investigates immune evasion mechanisms in lung squamous cell carcinoma (LUSC) using single-cell RNA sequencing data.
+
+Using Scanpy and diffusion pseudotime analysis, tumor-infiltrating CD8⁺ T cells were characterized to determine whether progressive exhaustion contributes to immune dysfunction within the tumor microenvironment.
+
+The analysis reconstructs a continuous transition from cytotoxic effector cells to terminally exhausted T-cell states and identifies transcriptional programs associated with functional inactivation.
 
 ---
 
@@ -96,7 +102,7 @@ All cells were clustered using Leiden clustering, revealing multiple immune popu
 
 ![T Cell Markers](results/figures/T_cell_Marker_Expression_UMAP.png)
 
-Canonical markers (CD3D, CD8A, CD8B, NKG7, GZMB) were used to identify cytotoxic T lymphocytes.
+Canonical markers (CD3D, CD8A, CD8B, NKG7, and GZMB) were used to identify cytotoxic T lymphocytes.
 
 ---
 
@@ -104,7 +110,7 @@ Canonical markers (CD3D, CD8A, CD8B, NKG7, GZMB) were used to identify cytotoxic
 
 ![Exhaustion Score](results/figures/Exhaustion_Score_Across_CD8_T_Cells.png)
 
-An exhaustion gene signature (PDCD1, LAG3, HAVCR2, TOX) identifies a dysfunctional subset of tumor-infiltrating T cells.
+An exhaustion gene signature (PDCD1, LAG3, HAVCR2, and TOX) identifies a dysfunctional subset of tumor-infiltrating T cells.
 
 ---
 
@@ -128,22 +134,7 @@ Exhaustion increases with pseudotime, indicating progressive acquisition of dysf
 
 ![Gene Dynamics](results/figures/Gene_Expression_Dynamics_Along_Pseudotime.png)
 
-Early cells express cytotoxic genes (GZMB, NKG7), while late cells upregulate checkpoint and regulatory genes (PDCD1, TOX, HAVCR2, LAG3).
-
----
-
-## Potential Clinical Relevance
-
-The analysis suggests that tumor-infiltrating CD8⁺ T cells in LUSC are present but progressively acquire exhaustion-associated transcriptional programs.
-
-Potential implications include:
-
-* Understanding response to immune checkpoint inhibitors
-* Identification of exhaustion-associated biomarkers
-* Characterization of immune dysfunction within tumors
-* Support for future immunotherapy research
-
-This project is intended for research and educational purposes only and is not designed for clinical decision-making.
+Early cells express cytotoxic genes (GZMB and NKG7), while late cells upregulate checkpoint and regulatory genes (PDCD1, TOX, HAVCR2, and LAG3).
 
 ---
 
@@ -206,6 +197,21 @@ conda activate lusc_scRNA
 
 jupyter lab
 ```
+
+---
+
+## Potential Clinical Relevance
+
+The analysis suggests that tumor-infiltrating CD8⁺ T cells in LUSC are present but progressively acquire exhaustion-associated transcriptional programs.
+
+Potential implications include:
+
+* Understanding response to immune checkpoint inhibitors
+* Identification of exhaustion-associated biomarkers
+* Characterization of immune dysfunction within tumors
+* Support for future immunotherapy research
+
+This project is intended for research and educational purposes only and is not designed for clinical decision-making.
 
 ---
 
