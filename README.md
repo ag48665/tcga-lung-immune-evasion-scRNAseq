@@ -84,7 +84,7 @@ All cells were clustered using Leiden clustering, revealing multiple immune popu
 
 ### Identification of CD8 T Cells
 
-![T cell markers](results/figures/T_cell_Marker_Expression_UMAP.png)
+![T Cell Markers](results/figures/T_cell_Marker_Expression_UMAP.png)
 
 Canonical markers (CD3D, CD8A, CD8B, NKG7, GZMB) were used to identify cytotoxic T lymphocytes.
 
@@ -92,7 +92,7 @@ Canonical markers (CD3D, CD8A, CD8B, NKG7, GZMB) were used to identify cytotoxic
 
 ### Exhaustion Phenotype
 
-![Exhaustion score](results/figures/Exhaustion_Score_Across_CD8_T_Cells.png)
+![Exhaustion Score](results/figures/Exhaustion_Score_Across_CD8_T_Cells.png)
 
 An exhaustion gene signature (PDCD1, LAG3, HAVCR2, TOX) identifies a dysfunctional subset of tumor-infiltrating T cells.
 
@@ -108,7 +108,7 @@ Diffusion pseudotime reconstructs T-cell differentiation within the tumor.
 
 ### Functional Inactivation Along Trajectory
 
-![Exhaustion vs pseudotime](results/figures/Exhaustion_vs_Pseudotime_in_CD8_T_Cells.png)
+![Exhaustion vs Pseudotime](results/figures/Exhaustion_vs_Pseudotime_in_CD8_T_Cells.png)
 
 Exhaustion increases with pseudotime, indicating progressive acquisition of dysfunction.
 
@@ -116,7 +116,7 @@ Exhaustion increases with pseudotime, indicating progressive acquisition of dysf
 
 ### Gene Programs Driving Exhaustion
 
-![Gene dynamics](results/figures/Gene_Expression_Dynamics_Along_Pseudotime.png)
+![Gene Dynamics](results/figures/Gene_Expression_Dynamics_Along_Pseudotime.png)
 
 Early cells express cytotoxic genes (GZMB, NKG7), while late cells upregulate checkpoint and regulatory genes (PDCD1, TOX, HAVCR2, LAG3).
 
@@ -128,9 +128,9 @@ The analysis suggests that tumor-infiltrating CD8⁺ T cells in LUSC are present
 
 Potential implications include:
 
-* understanding response to immune checkpoint inhibitors
-* identification of exhaustion-associated biomarkers
-* characterization of immune dysfunction within tumors
-* support for future immunotherapy research
+* Understanding response to immune checkpoint inhibitors
+* Identification of exhaustion-associated biomarkers
+* Characterization of immune dysfunction within tumors
+* Support for future immunotherapy research
 
-This project is intended for research and educational purposes only and is not designed for clinical decision-making.
+This project is intended for research and educational purposes only and is not designed for
