@@ -217,6 +217,7 @@ This provides a computational explanation for the effectiveness of immune checkp
 * reproducible research workflows
 
 ---
+## Author
 
 **Agata Gabara**
 
